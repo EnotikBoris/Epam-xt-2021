@@ -6,24 +6,29 @@ namespace The_Magnificent_Ten
     {
         static void Main(string[] args)
         {
-            int i = GetNumber();
-            int l = GetNumber();
+            //int i = GetNumber();
+            //int l = GetNumber();
 
-            if (GetSquare(i, l) == 0)
-            {
-                Console.WriteLine(" некоpректные данные");
-            }
-            else
-            {
-                Console.WriteLine(GetSquare(i, l));
-            }
+            //if (GetSquare(i, l) == 0)
+            //{
+            //    Console.WriteLine(" некоpректные данные");
+            //}
+            //else
+            //{
+            //    Console.WriteLine(GetSquare(i, l));
+            //}
 
-            // вызов второй задачи ;
+            //// вызов второй задачи ;
 
-            // string N_string = Console.ReadLine();
+            //int n_2 = GetNumber();
+            //Console.WriteLine(TRIANGLEEEE(n_2));
 
-            int n = GetNumber();
-            Console.WriteLine(TRIANGLE(n));
+            //вызов третий задачи
+
+            int n_3 = GetNumber();
+            Console.WriteLine(ANOTHER_TRIANGLE(n_3));
+
+
 
         }
 
@@ -67,7 +72,47 @@ namespace The_Magnificent_Ten
             return star;
         }
 
+        public static string ANOTHER_TRIANGLE(int n)             //Task 1.1.3 
+        {
+            string star = "*"+ "\n";
+            int number_of_spaces = n;
+            
+
+            for (int i = 0; i <= n; i++)
+            {
+                string spaces = " ";
+
+                for (int j = 0; j <= number_of_spaces; j++)
+                {
+                    spaces = spaces + " ";
+                }
+
+                number_of_spaces --;
+                star = star + spaces;
+
+                for (int a = 0; a <= i; a++)
+                {
+                    star = star + "**";
+                }
+                star = star + "\n";
+            }
+
+            return star;
+        }
+
+
+
+       // public static int 
+
+
+
+
+
+
+
+
 
     } 
+
 
 }
