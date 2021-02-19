@@ -6,22 +6,22 @@ namespace The_Magnificent_Ten
     {
         static void Main(string[] args)
         {
-            //int i = GetNumber();
-            //int l = GetNumber();
+            int i = GetNumber();
+            int l = GetNumber();
 
-            //if (GetSquare(i, l) == 0)
-            //{
-            //    Console.WriteLine(" некоpректные данные");
-            //}
-            //else
-            //{
-            //    Console.WriteLine(GetSquare(i, l));
-            //}
+            if (GetSquare(i, l) == 0)
+            {
+                Console.WriteLine(" некоpректные данные");
+            }
+            else
+            {
+                Console.WriteLine(GetSquare(i, l));
+            }
 
-            //// вызов второй задачи ;
+            // вызов второй задачи ;
 
-            //int n_2 = GetNumber();
-            //Console.WriteLine(TRIANGLEEEE(n_2));
+            int n_2 = GetNumber();
+            Console.WriteLine(TRIANGLEEEE(n_2));
 
             //вызов третий задачи
 
@@ -74,23 +74,27 @@ namespace The_Magnificent_Ten
 
         public static string ANOTHER_TRIANGLE(int n)             //Task 1.1.3 
         {
-            string star = "*"+ "\n";
-            int number_of_spaces = n;
-            
-
-            for (int i = 0; i <= n; i++)
+            if (n == 1)
             {
-                string spaces = " ";
+                return "*";
+            }
 
-                for (int j = 0; j <= number_of_spaces; j++)
+            string star = "";
+            int number_of_spaces = n;
+
+            for (int i = 0; i < n; i++)
+            {
+                string spaces = "";
+
+                for (int j = 0; j < number_of_spaces; j++)
                 {
                     spaces = spaces + " ";
                 }
 
                 number_of_spaces --;
-                star = star + spaces;
+                star = star + spaces + "*"; // Добавляем пробелы к следующей строке + 1 звезду для того, чтобы было нечётное количесвто звёзд
 
-                for (int a = 0; a <= i; a++)
+                for (int a = 0; a < i; a++)
                 {
                     star = star + "**";
                 }
