@@ -23,7 +23,8 @@ namespace The_Magnificent_Ten
             int n_2 = GetNumber();
             Console.WriteLine(TRIANGLEEEE(n_2));
 
-            //вызов третий задачи
+            //
+            вызов третий задачи
 
             int n_3 = GetNumber();
             Console.WriteLine(ANOTHER_TRIANGLE(n_3));
