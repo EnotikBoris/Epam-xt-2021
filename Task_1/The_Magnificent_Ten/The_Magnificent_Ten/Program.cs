@@ -23,12 +23,15 @@ namespace The_Magnificent_Ten
             int n_2 = GetNumber();
             Console.WriteLine(TRIANGLEEEE(n_2));
 
-            //
-            вызов третий задачи
+            //вызов 3й задачи
 
             int n_3 = GetNumber();
             Console.WriteLine(ANOTHER_TRIANGLE(n_3));
 
+            // вызов 4й задачи
+
+            int n_4 = GetNumber();
+            Console.WriteLine(елочка(n_4));
 
 
         }
@@ -73,50 +76,51 @@ namespace The_Magnificent_Ten
             return star;
         }
 
-        public static string ANOTHER_TRIANGLE(int n)             //Task 1.1.3 
+        public static string ANOTHER_TRIANGLE(int n, int отступ = 0)             //Task 1.1.3 
         {
-            if (n == 1)
-            {
-                return "*";
-            }
-
-            string star = "";
+            string triangle = "";
             int number_of_spaces = n;
 
             for (int i = 0; i < n; i++)
             {
-                string spaces = "";
+                number_of_spaces--;
 
-                for (int j = 0; j < number_of_spaces; j++)
-                {
-                    spaces = spaces + " ";
-                }
+                string star = "";
+                star = star.PadLeft(отступ + number_of_spaces, ' ');                // делаем пробелы
 
-                number_of_spaces --;
-                star = star + spaces + "*"; // Добавляем пробелы к следующей строке + 1 звезду для того, чтобы было нечётное количесвто звёзд
-
-                for (int a = 0; a < i; a++)
-                {
-                    star = star + "**";
-                }
-                star = star + "\n";
+                addStar(ref triangle, i, ref star);
             }
 
-            return star;
+            return triangle;
         }
 
+        public static string елочка(int n)
+        {
+            string елочка = "";
+            int N = n;
 
+            for (int i = 0; i < n; i++)
+            {
+                елочка = елочка + ANOTHER_TRIANGLE(i, N );
+                N --;
+            }
+            
+            return елочка ;
+        }
 
-       // public static int 
+        private static void addStar(ref string triangle, int i, ref string star)                // добавляем звездочки
+        {
+            star = star + "*";
 
+            for (int a = 0; a < i; a++)
+            {
+                star = star + "**";
+            }
+            star = star + "\n";
+            triangle = triangle + star;
+        }
 
-
-
-
-
-
-
-
+        
     } 
 
 
