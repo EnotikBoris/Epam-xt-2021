@@ -88,9 +88,5 @@ namespace The_Magnificent_Ten_2
             italic = 2,
             underline = 4,
         }
-
-        public static
-       
-
     }
 }
