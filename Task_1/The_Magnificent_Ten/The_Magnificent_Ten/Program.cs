@@ -18,7 +18,7 @@ namespace The_Magnificent_Ten
                 Console.WriteLine(GetSquare(i, l));
             }
 
-            // вызов второй задачи ;
+            // вызов 2й задачи ;
 
             int n_2 = GetNumber();
             Console.WriteLine(TRIANGLEEEE(n_2));
@@ -60,7 +60,7 @@ namespace The_Magnificent_Ten
             return i;
         }
 
-        public static string TRIANGLEEEE( int n)                  //task 1.1.2 крик души :D
+        public static string TRIANGLEEEE( int n)                  //task 1.1.2 
         {
             string star = "*"+ " \n";
 
@@ -116,6 +116,7 @@ namespace The_Magnificent_Ten
             {
                 star = star + "**";
             }
+
             star = star + "\n";
             triangle = triangle + star;
         }
