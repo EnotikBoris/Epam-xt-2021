@@ -19,23 +19,52 @@ namespace ArrayProcesseng1._1._7
             Console.WriteLine("Task 1.1.9 : ");
             Console.WriteLine(PositiveSumm());
 
+            //   task 1.1.10
+
+            Console.WriteLine("Task 1.1.10 : ");
+            Console.WriteLine(PositiveSummаFor2DArray());
+
         }
 
-        private static int PositiveSumm()
+        private static int PositiveSumm()                       // TASK 1.1.9
         {
             int summa = 0;
-            int[] r = new int[10];
+            int[] arr = new int[10];
 
-            RandomArr(r);
+            RandomArr(arr);
 
-            for(int i = 0; i < r.Length; ++i)
+            for(int i = 0; i < arr.Length; ++i)
             {
-                if (r[i] >= 0 )
+                if (arr[i] >= 0 )
                 {
-                     summa = summa + r[i];
+                     summa = summa + arr[i];
                 }
             }
               
+            return summa;
+        }
+
+         private static int PositiveSummаFor2DArray()                       // TASK 1.1.10
+        {
+            int summa = 0;
+            int[,] arr = new int[5,5];
+
+            RandomArr(arr);
+
+            for(int i = 0; i < arr.GetLength(0); ++i)
+            {
+                for (int j = 0; j < arr.GetLength(1); j++)
+                {
+                    if ((i + j) % 2 == 0)
+                    {
+                        summa = summa + arr[i,j];
+                    }
+                }
+            }
+
+            Printarray(arr);
+
+
             return summa;
         }
 
@@ -127,6 +156,18 @@ namespace ArrayProcesseng1._1._7
                 Console.Write(item + " ");
             }
         }
+        
+        private static void Printarray(int[,] arr)                   // 1.1.7
+        {
+            for (int i = 0; i < arr.GetLength(0); i++)
+            {
+                for (int j = 0; j < arr.GetLength(1); j++)
+                {
+                    Console.Write(arr[i,j] + " ");
+                }
+                Console.WriteLine();
+            }
+        }
 
         private static void Sort(int[] arr)                             // 1.1.7
         {
@@ -152,6 +193,14 @@ namespace ArrayProcesseng1._1._7
             Random rand = new Random();
             for (int i = 0; i < arr.Length; i++)
                 arr[i] = rand.Next(-10, 10);
+        }
+        private static void RandomArr(int[,] arr)                    //1.1.7
+        {
+            Random rand = new Random();
+
+            for (int i = 0; i < arr.GetLength(0); i++)
+                for (int j = 0; j < arr.GetLength(1); j++)
+                    arr[i,j] = rand.Next(-10, 10);
         }
     }
 }
