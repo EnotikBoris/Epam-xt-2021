@@ -103,8 +103,7 @@ namespace Task_1._2
 
                         symbs[0] = char.ToUpper(symbs[0]);
 
-                        vod
-                            \+= new String(symbs) + separator + ' ';
+                        vod += new String(symbs) + separator + ' ';
                     }
                 }
             }
