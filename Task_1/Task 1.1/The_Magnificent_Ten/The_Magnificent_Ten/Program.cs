@@ -31,7 +31,7 @@ namespace The_Magnificent_Ten
             // вызов 4й задачи
 
             int n_4 = GetNumber();
-            Console.WriteLine(елочка(n_4));
+            Console.WriteLine(Herringbone(n_4));
 
 
         }
@@ -86,7 +86,7 @@ namespace The_Magnificent_Ten
                 number_of_spaces--;
 
                 string star = "";
-                star = star.PadLeft(отступ + number_of_spaces, ' ');                // делаем пробелы
+                star = star.PadLeft(отступ + number_of_spaces, ' ');                //  make spaces
 
                 addStar(ref triangle, i, ref star);
             }
@@ -94,21 +94,21 @@ namespace The_Magnificent_Ten
             return triangle;
         }
 
-        public static string елочка(int n)
+        public static string Herringbone(int n)                             //  task 1.1.4
         {
-            string елочка = "";
+            string herringbone = "";
             int N = n;
 
             for (int i = 0; i < n; i++)
             {
-                елочка = елочка + ANOTHER_TRIANGLE(i, N );
+                herringbone = herringbone + ANOTHER_TRIANGLE(i, N );
                 N --;
             }
             
-            return елочка ;
+            return herringbone;
         }
 
-        private static void addStar(ref string triangle, int i, ref string star)                // добавляем звездочки
+        private static void addStar(ref string triangle, int i, ref string star)                // making stars
         {
             star = star + "*";
 
