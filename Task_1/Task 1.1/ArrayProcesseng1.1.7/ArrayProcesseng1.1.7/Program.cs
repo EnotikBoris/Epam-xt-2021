@@ -5,23 +5,23 @@ namespace ArrayProcesseng1._1._7
     class Program
     {
         static void Main(string[] args)
-        { 
-            Console.WriteLine( "Task 1.1.7 : ");
+        {
+            Console.WriteLine($"{Environment.NewLine}Task 1.1.7 : {Environment.NewLine}") ;
              taska1_1_7();
           
             //  task 1.1.8
 
-            Console.WriteLine("Task 1.1.8 : ");
+            Console.WriteLine($"{Environment.NewLine}Task 1.1.8 : {Environment.NewLine}");
             GenirateArray(3, 3, 3);
 
             //   task 1.1.9
 
-            Console.WriteLine("Task 1.1.9 : ");
+            Console.WriteLine($"{Environment.NewLine}Task 1.1.9 : {Environment.NewLine}");
             Console.WriteLine(PositiveSumm());
 
             //   task 1.1.10
 
-            Console.WriteLine("Task 1.1.10 : ");
+            Console.WriteLine($"{Environment.NewLine}Task 1.1.10 : {Environment.NewLine}");
             Console.WriteLine(PositiveSummаFor2DArray());
 
         }
