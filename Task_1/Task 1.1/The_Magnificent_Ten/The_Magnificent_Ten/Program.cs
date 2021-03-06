@@ -86,7 +86,7 @@ namespace The_Magnificent_Ten
                 number_of_spaces--;
 
                 string star = "";
-                star = star.PadLeft(отступ + number_of_spaces, ' ');                //  make spaces
+                star = star.PadLeft(отступ + number_of_spaces, ' ');                // делаем пробелы       make spaces
 
                 addStar(ref triangle, i, ref star);
             }
@@ -94,7 +94,7 @@ namespace The_Magnificent_Ten
             return triangle;
         }
 
-        public static string Herringbone(int n)                             //  task 1.1.4
+        public static string Herringbone(int n)
         {
             string herringbone = "";
             int N = n;

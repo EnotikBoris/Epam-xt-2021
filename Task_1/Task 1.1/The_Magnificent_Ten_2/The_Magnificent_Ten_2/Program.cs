@@ -8,7 +8,7 @@ namespace The_Magnificent_Ten_2
         {
             // вызов Таски 1.1.5
             Console.WriteLine("Task 1.1.5 \n");
-           Summ() ;
+            Summ() ;
             Console.Write("\n");
             
             // task 1.1.6
@@ -36,7 +36,7 @@ namespace The_Magnificent_Ten_2
 
         public static void FontAdjustment()                 // Task 1.1.6
         {
-           
+            Console.WriteLine("введите enter для начала работы задачи.");
 
             string command = Console.ReadLine();
 
