@@ -9,6 +9,8 @@ namespace The_Magnificent_Ten
             int i = GetNumber();
             int l = GetNumber();
 
+            Console.WriteLine(" вызов 1й задачи");
+
             if (GetSquare(i, l) == 0)
             {
                 Console.WriteLine(" некоpректные данные");
@@ -18,17 +20,17 @@ namespace The_Magnificent_Ten
                 Console.WriteLine(GetSquare(i, l));
             }
 
-            // вызов 2й задачи ;
+            Console.WriteLine(" вызов 2й задачи") ;
 
             int n_2 = GetNumber();
             Console.WriteLine(TRIANGLEEEE(n_2));
 
-            //вызов 3й задачи
+            Console.WriteLine("вызов 3й задачи");
 
             int n_3 = GetNumber();
             Console.WriteLine(ANOTHER_TRIANGLE(n_3));
 
-            // вызов 4й задачи
+            Console.WriteLine("вызов 4й задачи");
 
             int n_4 = GetNumber();
             Console.WriteLine(Herringbone(n_4));
@@ -51,6 +53,8 @@ namespace The_Magnificent_Ten
 
         public static int GetNumber()                            // string v int
         {
+            Console.WriteLine(" Введите число ");
+
             string command_1 = Console.ReadLine();
 
             int i = 0;
