@@ -6,9 +6,12 @@ namespace Custom_String_task_2._1._1
 {
     interface ICusString
     {
-        char[] ToChatArray();                                        // объявила метод по конвертации 
+        char[] ToCharArray();                                                         // объявила метод по конвертации 
+        bool Compare(ICusString cusString);                                         // сравнение
+        int IndexOf(char value);                                                     // поиск символов
+        ICusString ConCat(ICusString cusString);                                    //конкатенация ( сложение строк)
+        
 
-        bool Compare(ICusString cusString);                         // сравнение
         
     }
 }
