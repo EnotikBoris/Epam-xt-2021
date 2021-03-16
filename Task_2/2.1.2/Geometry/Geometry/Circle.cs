@@ -7,10 +7,10 @@ namespace Geometry
     /// <summary>
     /// окружность
     /// </summary>
-    class Circle
+    class Circle : Figure
     {
        // Figure figure = new Figure();                     //
-        public Circle(int radius, Point p)
+        public Circle(int radius, Point p) : base (p)
         {
             Radius = radius;
             Point point = new Point();
@@ -18,7 +18,7 @@ namespace Geometry
 
         public  int Radius { get;}
 
-        public double OverradePirimetr 
+        public override double Perimeter
         {
             get
             {
@@ -26,7 +26,9 @@ namespace Geometry
             }
         }
 
-
-
+        public override string ToString()
+        {
+            return $"Окружность: Периметр - {Perimeter}";
+        }
     }
 }

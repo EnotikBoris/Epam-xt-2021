@@ -15,8 +15,6 @@ namespace Geometry
         }
 
         public Point P { get; }
-        public abstract double Perimetr { get; }
-
-
+        public abstract double Perimeter { get; }
     }
 }
