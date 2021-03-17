@@ -6,6 +6,13 @@ namespace Geometry
 {
     class SquareFigure : Figure
     {
+        /// <summary>
+        /// квадрут
+        /// </summary>
+        /// <param name="p1">.1</param>
+        /// <param name="p2">.2</param>
+        /// <param name="p3">.3</param>
+        /// <param name="p4">.4</param>
         public SquareFigure(Point p1, Point p2, Point p3, Point p4) : base(p1)
         {
             P2 = p2;

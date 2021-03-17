@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Geometry
 {
+    /// <summary>
+    /// графический редактор
+    /// </summary>
     class Paint
     {
         private List<Figure> Figures { get; }

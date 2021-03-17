@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Geometry
 {
+    /// <summary>
+    /// прямоугольник
+    /// </summary>
     class Rectangle : Figure
     {
         public Rectangle(Point p1, Point p2, Point p3, Point p4) : base (p1)

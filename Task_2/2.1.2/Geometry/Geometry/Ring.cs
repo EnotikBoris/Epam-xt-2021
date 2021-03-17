@@ -2,6 +2,12 @@
 {
     class Ring : Circle
     {
+        /// <summary>
+        /// кольцо
+        /// </summary>
+        /// <param name="radius"></param>
+        /// <param name="internalRadius"></param>
+        /// <param name="p"></param>
         public Ring(int radius, int internalRadius, Point p) : base(radius, p)
         {
             InternalRadius = internalRadius;
