@@ -7,7 +7,7 @@ namespace MuGeme
     /// <summary>
     /// репсонаж
     /// </summary>
-    class Person
+    class Person : GameObject
     {
     }
 }

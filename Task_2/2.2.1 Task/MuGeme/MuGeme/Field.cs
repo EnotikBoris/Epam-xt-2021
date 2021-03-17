@@ -9,8 +9,19 @@ namespace MuGeme
     /// </summary>
     class Field
     {
+        GameObject go;
+        public Field(int width, int length)
+        {
 
+        }
 
+        public int Width { get; }
+        public int Length { get; }
+
+        public void AddObject(GameObject obj)
+        {
+            
+        }
 
 
     }

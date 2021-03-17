@@ -7,7 +7,8 @@ namespace MuGeme
     /// <summary>
     /// тип врага
     /// </summary>
-    class EnemeType
+   enum class EnemeType
     {
+        
     }
 }

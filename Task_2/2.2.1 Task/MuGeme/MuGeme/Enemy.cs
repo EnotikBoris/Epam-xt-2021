@@ -9,6 +9,6 @@ namespace MuGeme
     /// </summary>
     class Enemy : Person
     {
-
+        EnemeType et;
     }
 }
