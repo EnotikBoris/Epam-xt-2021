@@ -9,7 +9,7 @@ namespace MuGeme
     /// </summary>
     class Field
     {
-        GameObject go;
+        List<GameObject> go;
         public Field(int width, int length)
         {
 
@@ -20,7 +20,7 @@ namespace MuGeme
 
         public void AddObject(GameObject obj)
         {
-            
+            throw new NotImplementedException();                            // в том случае если мы не риализовываем ни чего 
         }
 
 

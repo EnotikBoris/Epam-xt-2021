@@ -7,7 +7,15 @@ namespace MuGeme
     /// <summary>
     /// игрок
     /// </summary>
-    class Player
+    class Player : Person
     {
+        public int Record { get; private set; }
+
+        public Player(Point p, int leves, int speed, string name) : base(p, speed, leves, name)
+        {
+
+        }
+
+        
     }
 }

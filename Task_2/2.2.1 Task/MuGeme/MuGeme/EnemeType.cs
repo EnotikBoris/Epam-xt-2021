@@ -7,8 +7,11 @@ namespace MuGeme
     /// <summary>
     /// тип врага
     /// </summary>
-   enum class EnemeType
+   enum EnemeType
     {
-        
+            Beer,
+            Wols,
+            Bear,
+            Monstr,
     }
 }

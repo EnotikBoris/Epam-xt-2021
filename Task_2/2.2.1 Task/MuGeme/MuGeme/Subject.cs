@@ -11,9 +11,9 @@ namespace MuGeme
     /// </summary>
    abstract class Subject : GameObject
     {
-        public int Size { get; }
+       // public int Size { get; }
 
-        public Subject(Point p, int size)
+        public Subject(Point p, string name) : base (p, name)
         {
 
         }

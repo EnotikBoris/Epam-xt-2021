@@ -7,16 +7,12 @@ namespace MuGeme
     /// <summary>
     /// игровой объект
     /// </summary>
-    class GameObject 
+    abstract class GameObject 
     {  
-        /// <summary>
-        ///  агригация
-        /// </summary>
-        Point p;
-
         public GameObject(Point p, String name)
         {
-
+            P = p;
+            Name = name;
         }
         public Point P { get; set; }
 
