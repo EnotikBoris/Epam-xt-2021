@@ -5,13 +5,13 @@ using System.Text;
 namespace MuGeme
 {
     /// <summary>
-    /// точка
+    /// передвижение перса 1
     /// </summary>
-    class Point
+    enum PlayerMovement
     {
-        public int X { get; set; }
-        public int Y { get; set; }
-
-
+        Left = 1,
+        Right = 2,
+        Up = 3,
+        Down = 4,
     }
 }
