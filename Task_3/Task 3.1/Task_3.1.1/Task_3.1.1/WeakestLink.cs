@@ -33,18 +33,17 @@ namespace Task_3._1._1
 
             while (true)
             {
-                ReCreate();
+                    ReCreate();
 
                 if (_peoples.Count >= _step)
                 {
                     i = UpdateCounter(i);
 
-                    DropPeople(i);
-                    i++;
+                    i = DropPeople(i);
                 }
                 else
                 {
-                    Console.WriteLine("Не могу больше удалять чуловеков © Бэндер");
+                    Console.WriteLine("Не могу больше удалять человеков © Бэндер");
                     break;
                 }
             }
@@ -52,7 +51,7 @@ namespace Task_3._1._1
 
         private int UpdateCounter(int i)
         {
-            if (i >= _peoples.Count - 1)
+            if (i >= _peoples.Count)
             {
                 i = 0;
             }
@@ -63,15 +62,19 @@ namespace Task_3._1._1
         private void ReCreate()
             => _peoples.RemoveAll(s => s.Equals(string.Empty));
 
-        private void DropPeople(int counter)
+        private int DropPeople(int counter)
         {
             if (_counter % _step == 0)
             {
-                Console.WriteLine($"Был удалён {_peoples[counter]}, осталось {_peoples.Count} человеков. © Бэндер");
+                Console.WriteLine($"Был удалён {_peoples[counter]}, осталось {_peoples.Count-1} человеков. © Бэндер");
                 _peoples[counter] = string.Empty; //""
+
+                counter--;
             }
 
             _counter++;
+
+            return counter + 1;
         }
 
         private void FillPeoples()
