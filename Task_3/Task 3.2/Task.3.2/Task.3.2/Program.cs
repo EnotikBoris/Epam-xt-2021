@@ -6,7 +6,7 @@ namespace Task._3._2
     {
         static void Main(string[] args)
         {
-            var array = new DynamicArray<string>();
+            var array = new DynamicArray<string>(8);
 
             array.Add("Test_1");
             array.Add("Test_2");

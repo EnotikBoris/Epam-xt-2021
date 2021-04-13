@@ -20,13 +20,12 @@ namespace Task._3._2
         /// <param name="capacity">Capacity - максимальная ёмкость массива до пересоздания массива</param>
         public DynamicArray(int capacity)
         {
-            _array = new T[capacity];
-            Capacity = capacity;
-            Length = 0;
+            InitializeArray(capacity);
         }
 
-        public DynamicArray() : this(8)
+        public DynamicArray()
         {
+            InitializeArray(8);
         }
 
         public DynamicArray(IEnumerable<T> collection)
@@ -94,8 +93,8 @@ namespace Task._3._2
                 Capacity = Capacity * 2;
             }
 
-            Length++;
             _array[Length] = item;
+            Length++;
         }
 
         public void AddRange(IEnumerable<T> collection)
@@ -244,6 +243,13 @@ namespace Task._3._2
             }
 
             throw new ArgumentOutOfRangeException();
+        }
+
+        private void InitializeArray(int capacity)
+        {
+            _array = new T[capacity];
+            Capacity = capacity;
+            Length = 0;
         }
     }
 }
