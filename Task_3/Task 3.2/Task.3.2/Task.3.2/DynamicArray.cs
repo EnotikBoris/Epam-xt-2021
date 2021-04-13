@@ -32,7 +32,8 @@ namespace Task._3._2
         {
             var count = collection.Count();
             Capacity = count;
-            Length = count;
+            _capacity = count;
+            _array = new T[count];
 
             CopyCollection(collection);
         }
@@ -73,13 +74,18 @@ namespace Task._3._2
         public int Length { get => _capacity; 
             private set 
             {
-                var array = (IEnumerable<T>)_array.Clone();
+                if (Capacity - 1 == Length)
+                {
+                    var array = (IEnumerable<T>)_array.Clone();
+
+                    Capacity *= 2;
+                    _array = new T[Capacity];
+
+                    CopyCollection(array);
+                }
 
                 _capacity = value;
-                _array = new T[_capacity];
-
-                CopyCollection(array);
-            } 
+            }
         }
 
         public object Current => _array[_current];
@@ -88,7 +94,7 @@ namespace Task._3._2
 
         public void Add(T item)
         {
-            if (Length == Capacity)
+            if (Length - 1 == Capacity)
             {
                 Capacity = Capacity * 2;
             }
@@ -101,21 +107,28 @@ namespace Task._3._2
         {
             Capacity = Capacity + collection.Count();
 
-            CopyCollection(collection);
+            var array = (T[])_array.Clone();
+            _array = new T[Capacity];
+
+            CopyCollection(array);
+
+            foreach (var item in collection)
+            {
+                Add(item);
+            }
         }
 
         public bool Remove(T item)
         {
             var array = (T[])_array.Clone();
 
-            _array = new T[Capacity];
-            Length = 0;
-
             for (int i = 0; i < _array.Length; i++)
             {
-                if (array[i]!.Equals(item))
+                bool isEquals = ((array[i]!?.Equals(item)).HasValue ? array[i]!.Equals(item) : false);
+
+                if (isEquals)
                 {
-                    Add(array[i]);
+                    _array[i] = default;
                 }
             }
 
@@ -202,7 +215,7 @@ namespace Task._3._2
 
             foreach (var item in _array)
             {
-                sb.Append(item.ToString() + " \n");
+                sb.Append(item?.ToString() + " \n");
             }
 
             return sb.ToString();
@@ -210,14 +223,15 @@ namespace Task._3._2
 
         private void CopyCollection(IEnumerable<T> collection)
         {
+            _capacity = 0;
             foreach (var item in collection)
             {
                 if (_array.Length > 0)
                 {
                     if (Length < Capacity)
                     {
-                        _array[Length] = item;
-                        Length++;
+                        _array[_capacity] = item;
+                        _capacity++;
                     }
                     else
                     {
@@ -231,8 +245,9 @@ namespace Task._3._2
         {
             i = Math.Abs(i);
             var array = _array.Reverse().ToArray();
+            var toggle = new DynamicArray<T>(array);
 
-            return GetElement(i);
+            return toggle.GetElement(i);
         }
 
         private T GetElement(int i)
