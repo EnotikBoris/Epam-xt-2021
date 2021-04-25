@@ -1,30 +1,65 @@
-﻿using FSL.Contracts;
+﻿using BLL_Contracts.Entities;
+using FSL.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace FSL
 {
-    class FileSystemWorker : FileWorker, IFileSystemWorker
+    class FileSystemWorker : ISystemWorker
     {
-        public void ChengeDirectory(string directory)
+        public FileSystemResponse GetFilesInfolder(FileSystemRequest request)
         {
-            throw new NotImplementedException();
+            var respose = new FileSystemResponse(request);
+            respose.FileStatus = new List<FileStatus>()
+            {
+            new FileStatus()
+            {
+                Content = "Tzst",
+                FileName = "Test.txt",
+                FileStatusSetings = FileStatusSetings.Commit,
+                FolderName= "Test",
+            }
+            };
+            respose.IsSuccess = true;
+
+            return respose;
         }
 
-        public bool CreatDirectory(string directory)
+        public FileSystemResponse Read(FileSystemRequest request)
         {
-            throw new NotImplementedException();
+            var respose = new FileSystemResponse(request);
+            respose.FileStatus = new List<FileStatus>()
+            {
+            new FileStatus()
+            {
+                Content = "Tzst",
+                FileName = "Test.txt",
+                FileStatusSetings = FileStatusSetings.Commit,
+                FolderName= "Test",
+            }
+            };
+            respose.IsSuccess = true;
+
+            return respose;
         }
 
-        public string GetCoorentDirectory()
+        public FileSystemResponse Write(FileSystemRequest request)
         {
-            throw new NotImplementedException();
-        }
+            var respose = new FileSystemResponse(request);
+            respose.FileStatus = new List<FileStatus>()
+            {
+            new FileStatus()
+            {
+                Content = "Tzst",
+                FileName = "Test.txt",
+                FileStatusSetings = FileStatusSetings.Commit,
+                FolderName= "Test",
+            }
+            };
+            respose.IsSuccess = true;
 
-        public bool RemoveDirectory(string directory)
-        {
-            throw new NotImplementedException();
+            return respose;
         }
     }
 }
