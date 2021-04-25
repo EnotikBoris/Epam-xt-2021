@@ -15,11 +15,7 @@ namespace BLL.Steps
             this.worker = worker;
         }
 
-        public FileSystemResponse Response
-        {
-            get => throw new NotImplementedException();
-            private set => throw new NotImplementedException();
-        }
+        public FileSystemResponse Response { get; set; }
         public IStep Step(FileSystemRequest request)
         {
             if (IsCommited(request))

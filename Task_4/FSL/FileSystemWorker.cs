@@ -6,7 +6,7 @@ using System.Text;
 
 namespace FSL
 {
-    class FileSystemWorker : ISystemWorker
+    public class FileSystemWorker : ISystemWorker
     {
         public FileSystemResponse GetFilesInfolder(FileSystemRequest request)
         {

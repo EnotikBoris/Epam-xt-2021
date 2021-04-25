@@ -1,5 +1,6 @@
 ﻿using BLL_Contracts.Entities;
 using BLL_Contracts.Interfaces;
+using FSL.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,27 +10,31 @@ namespace BLL.Steps
     class CommandStrategyStep : IStep
     {
         private IStep nextStep;
+        private ISystemWorker worker;
 
 
-        public CommandStrategyStep()
+        public CommandStrategyStep(ISystemWorker worker)
         {
-
+            this.worker = worker;
         }
 
-        public FileSystemResponse Response => throw new NotImplementedException();
-
+        public FileSystemResponse Response
+        {
+            get;
+            private set;
+        }
         public IStep Step(FileSystemRequest request)
         {
             CreatePipeLine(request);
-            return nextStep;
+            return nextStep.Step(request);
         }
 
         private void CreatePipeLine(FileSystemRequest request)
         {
-            switch (request.Command)
+            switch (request.Command.Split()[0])
             {
                 case "Commit":
-                    nextStep = new ChangeFIleStatusStep();
+                    nextStep = new ChangeFIleStatusStep(worker);
                     break;
                 case "Reset":
                     nextStep = new ResetFileSystemStep();

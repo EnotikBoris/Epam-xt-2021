@@ -3,6 +3,7 @@ using BLL_Contracts.Interfaces;
 using BLL_Contracts.Entities;
 using BLL.Steps;
 using System.Collections.Generic;
+using FSL;
 
 namespace VCS
 {
@@ -12,7 +13,7 @@ namespace VCS
         {
             Console.WriteLine("Hello World!");
 
-            var setupStep = new SetupStep();
+            var setupStep = new SetupStep(new FileSystemWorker());
 
             var request = new FileSystemRequest()
             {
@@ -29,6 +30,9 @@ namespace VCS
             };
 
             var response = setupStep.Step(request).Response;
+
+            Console.WriteLine(response.IsSuccess);
+            Console.WriteLine(response.FileStatus[0].Content);
         }
     }
 }

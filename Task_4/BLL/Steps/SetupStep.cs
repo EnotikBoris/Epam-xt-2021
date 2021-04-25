@@ -1,5 +1,6 @@
 ﻿using BLL_Contracts.Entities;
 using BLL_Contracts.Interfaces;
+using FSL.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,9 +10,11 @@ namespace BLL.Steps
     public class SetupStep : IStep
     {
         private IStep nextStep;
-        public SetupStep()
+        private ISystemWorker worker;
+        public SetupStep(ISystemWorker worker)
         {
-            nextStep = new CommandStrategyStep();
+            this.worker = worker;
+            nextStep = new CommandStrategyStep(worker);
         }
 
         public FileSystemResponse Response
@@ -23,7 +26,7 @@ namespace BLL.Steps
         {
             if (CheckRequest(request))
             {
-                return nextStep;
+                return nextStep.Step(request);
             }
 
             Response = new FileSystemResponse(request);
@@ -40,8 +43,6 @@ namespace BLL.Steps
                 case "Reset": return true;
                 default: return false;
             }
-
-            throw new NotImplementedException();
         }
     }
 }
