@@ -8,7 +8,8 @@ namespace FSL.Contracts
     public interface ISystemWorker
     {
         public FileSystemResponse Read(FileSystemRequest request);
+        public FileSystemResponse Read(string folder);
         public FileSystemResponse Write(FileSystemRequest request);
-        public FileSystemResponse GetFilesInfolder(FileSystemRequest request);
+        //public FileSystemResponse GetFilesInfolder(FileSystemRequest request); // Если будет время реализовать
     }
 }

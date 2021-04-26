@@ -13,17 +13,19 @@ namespace VCS
         {
             Console.WriteLine("Hello World!");
 
+            //Reset text.txt 25.04.2020
+
             var setupStep = new SetupStep(new FileSystemWorker());
 
             var request = new FileSystemRequest()
             {
-                Command = "Commit test.txt",
+                Command = "Reset test1.txt 26.04.2021 2.28.29",
                 FileStatus = new List<FileStatus>()
                 {
                     new FileStatus()
                     {
                         Content = null,
-                        FileName = "test.txt",
+                        FileName = "test1.txt",
                         FolderName = "C:/test",
                     }
                 }
@@ -32,7 +34,11 @@ namespace VCS
             var response = setupStep.Step(request).Response;
 
             Console.WriteLine(response.IsSuccess);
-            Console.WriteLine(response.FileStatus[0].Content);
+
+            foreach (var item in response.FileStatus)
+            {
+                Console.WriteLine($"{item.FileName} --- {item.FileStatusSetings}");
+            }
         }
     }
 }

@@ -37,10 +37,10 @@ namespace BLL.Steps
                     nextStep = new ChangeFIleStatusStep(worker);
                     break;
                 case "Reset":
-                    nextStep = new ResetFileSystemStep();
+                    nextStep = new ResetFileSystemStep(worker);
                     break;
                 case "Status":
-                    nextStep = new CheckFileSystemStep();
+                    nextStep = new CheckFileSystemStep(worker);
                     break;
             }
         }

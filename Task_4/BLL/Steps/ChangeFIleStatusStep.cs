@@ -4,6 +4,7 @@ using FSL.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace BLL.Steps
 {
@@ -37,11 +38,11 @@ namespace BLL.Steps
             try
             {
                 var file = request.FileStatus[0];
+                request.FileStatus[0].FileName = request.FileStatus[0].FileName.Replace("%Date%", string.Empty);
+                file.Content = worker.Read(request).FileStatus[0]?.Content;
 
-                file.Content = worker.Read(request).FileStatus[0].Content;
-
-                file.FileName = file.FileName + $"_{DateTime.Now}";
-                file.FolderName += ".Backup";
+                file.FileName = (file.FileName.Replace(".txt", string.Empty) + $"_{DateTime.Now}" + ".txt").Replace(":", ".");
+                file.FolderName += "\\Backup";
                 request.FileStatus[0] = file;
                 
                 var response = worker.Write(request);
@@ -49,8 +50,10 @@ namespace BLL.Steps
                 
                 return response;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
+
                 return new FileSystemResponse(request) {IsSuccess=false };
             }
         }
@@ -58,8 +61,12 @@ namespace BLL.Steps
         private bool IsCommited(FileSystemRequest request)
         {
             var readFileResult = worker.Read(request);
-            var file = readFileResult.FileStatus[0];
+            var file = readFileResult.FileStatus.FirstOrDefault(x => x.FileName.Split('\\')[x.FileName.Split('\\').Length-1] == request.FileStatus[0].FileName);
             var readFileBackupResult = worker.Read(GetRequestForBackup(request));
+
+            if (readFileBackupResult.FileStatus.Count == 0)
+                return false;
+
             return ConditionFiles(file, readFileBackupResult.FileStatus[readFileBackupResult.FileStatus.Count - 1]);
         }
 
@@ -68,7 +75,7 @@ namespace BLL.Steps
             var fslRequest = (FileSystemRequest)request.Clone();
             foreach (var item in fslRequest.FileStatus)
             {
-                item.FolderName = item.FolderName + ".Backup";
+                item.FolderName = item.FolderName + "\\Backup";
                 item.FileName = item.FileName + "%Date%";
             }
             return fslRequest;

@@ -12,9 +12,27 @@ namespace BLL_Contracts.Entities
         {
             return new FileSystemRequest
             {
-                FileStatus = this.FileStatus,
-                Command = Command
+                FileStatus = GetCloneFileStaus(this.FileStatus),
+                Command = (string)Command.Clone()
             };
+        }
+
+        private List<FileStatus> GetCloneFileStaus(List<FileStatus> fileStatuses)
+        {
+            var list = new List<FileStatus>(fileStatuses.Count);
+
+            for (int i = 0; i < fileStatuses.Count; i++)
+            {
+                list.Add(new FileStatus
+                {
+                    Content = (string)fileStatuses[i]?.Content?.Clone(),
+                    FileName = (string)fileStatuses[i]?.FileName?.Clone(),
+                    FolderName = (string)fileStatuses[i]?.FolderName?.Clone(),
+                    FileStatusSetings = fileStatuses[i].FileStatusSetings,
+                });
+            }
+
+            return list;
         }
     }
 }
