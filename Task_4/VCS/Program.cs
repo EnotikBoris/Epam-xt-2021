@@ -11,15 +11,14 @@ namespace VCS
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
 
-            //Reset text.txt 25.04.2020
+            //Reset text.txt 26.04.2021 2.28.29
 
             var setupStep = new SetupStep(new FileSystemWorker());
 
             var request = new FileSystemRequest()
             {
-                Command = "Reset test1.txt 26.04.2021 2.28.29",
+                Command = "Status",
                 FileStatus = new List<FileStatus>()
                 {
                     new FileStatus()
