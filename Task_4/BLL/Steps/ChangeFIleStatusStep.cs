@@ -62,12 +62,12 @@ namespace BLL.Steps
         {
             var readFileResult = worker.Read(request);
             var file = readFileResult.FileStatus.FirstOrDefault(x => x.FileName.Split('\\')[x.FileName.Split('\\').Length-1] == request.FileStatus[0].FileName);
-            var readFileBackupResult = worker.Read(GetRequestForBackup(request));
+            var backupFile = worker.Read(GetRequestForBackup(request)).FileStatus.Where(x => x.Content == file.Content).FirstOrDefault();
 
-            if (readFileBackupResult.FileStatus.Count == 0)
+            if (backupFile == null)
                 return false;
 
-            return ConditionFiles(file, readFileBackupResult.FileStatus[readFileBackupResult.FileStatus.Count - 1]);
+            return ConditionFiles(file, backupFile);
         }
 
         private FileSystemRequest GetRequestForBackup(FileSystemRequest request)

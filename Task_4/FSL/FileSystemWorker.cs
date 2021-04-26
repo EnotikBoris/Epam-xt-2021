@@ -11,46 +11,15 @@ namespace FSL
 {
     public class FileSystemWorker : ISystemWorker
     {
-        //public FileSystemResponse GetFilesInfolder(FileSystemRequest request)
-        //{
-        //    var respose = new FileSystemResponse(request);
-        //    respose.FileStatus = new List<FileStatus>()
-        //    {
-        //    new FileStatus()
-        //    {
-        //        Content = "Tzst",
-        //        FileName = "Test.txt",
-        //        FileStatusSetings = FileStatusSetings.Commit,
-        //        FolderName= "Test",
-        //    }
-        //    };
-        //    respose.IsSuccess = true;
-
-        //    return respose;
-        //}
-
         public FileSystemResponse Read(FileSystemRequest request)
         {
             string[] fileNames = null;
             var folder = request.FileStatus[0].FolderName;
 
-            try
-            {
-                fileNames = Directory.GetFiles(folder);
-            }
-            catch (DirectoryNotFoundException)
-            {
-                Directory.CreateDirectory(folder);
-                fileNames = Directory.GetFiles(folder);
-            }
+            fileNames = GetFilesFromDirectory(folder);
+            fileNames = GetFileNames(request, fileNames);
 
-            if (request.FileStatus[0].FileName.Contains("%Date%"))
-            {
-                var regex = new Regex(@"\d\d\.\d\d\.\d\d\d\d.*");
-                fileNames = fileNames.Where(x => regex.IsMatch(x)).ToArray();
-            }
-
-            string content = null;
+            // string content = null;
             List<FileStatus> files = new List<FileStatus>();
 
             foreach (var fileName in fileNames)
@@ -61,14 +30,11 @@ namespace FSL
                     FolderName = folder,
                 };
 
-                using (FileStream fstream = File.OpenRead(fileName))
-                {
-                    byte[] array = new byte[fstream.Length];
-                    fstream.Read(array, 0, array.Length);
-                    fileStatus.Content = System.Text.Encoding.Default.GetString(array);
-                }
+                fileStatus.Content = ReadContent(fileName);
 
-                if (fileName.Contains(request.FileStatus[0].FileName.Split('_')[1]))
+                var splitFileName = fileName.Split('_')[0].Split('\\').Last();
+
+                if (request.FileStatus[0].FileName.Contains(splitFileName))
                     files.Add(fileStatus);
             }
 
@@ -79,6 +45,10 @@ namespace FSL
 
             return response;
         }
+
+        
+
+
 
         public FileSystemResponse Read(string folder)
         {
@@ -135,9 +105,7 @@ namespace FSL
 
             using (FileStream fstream = new FileStream($"{request.FileStatus[0].FolderName}\\{request.FileStatus[0].FileName}", FileMode.OpenOrCreate))
             {
-                // преобразуем строку в байты
                 byte[] array = System.Text.Encoding.Default.GetBytes(request.FileStatus[0].Content);
-                // запись массива байтов в файл
                 fstream.Write(array, 0, array.Length);
             }
 
@@ -156,6 +124,46 @@ namespace FSL
             };
 
             return response;
+        }
+
+        private static string[] GetFileNames(FileSystemRequest request, string[] fileNames)
+        {
+            if (request.FileStatus[0].FileName.Contains("%Date%"))
+            {
+                var regex = new Regex(@"\d\d\.\d\d\.\d\d\d\d.*");
+                fileNames = fileNames.Where(x => regex.IsMatch(x)).ToArray();
+            }
+
+            return fileNames;
+        }
+
+        private static string[] GetFilesFromDirectory(string folder)
+        {
+            string[] fileNames;
+            try
+            {
+                fileNames = Directory.GetFiles(folder);
+            }
+            catch (DirectoryNotFoundException)
+            {
+                Directory.CreateDirectory(folder);
+                fileNames = Directory.GetFiles(folder);
+            }
+
+            return fileNames;
+        }
+
+        private static string ReadContent(string fileName)
+        {
+            string content = null;
+            using (FileStream fstream = File.OpenRead(fileName))
+            {
+                byte[] array = new byte[fstream.Length];
+                fstream.Read(array, 0, array.Length);
+                content = System.Text.Encoding.Default.GetString(array);
+            }
+
+            return content;
         }
     }
 }
