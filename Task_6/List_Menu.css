@@ -1,0 +1,18 @@
+.list{
+
+        margin: 0;
+        padding: 0;
+    }
+ul {
+        width: 200px;
+        height: auto;
+        padding: 10px;
+        margin: 50px auto;
+        background-color: #f9e497;
+        border: 1px solid #7a776d;
+        border-radius: 10px;
+        color: #8e0b07;
+        box-shadow: 4px 4px 1px 1px #880000;
+        line-height: 25px;
+        list-style: none;
+    }
