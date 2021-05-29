@@ -1,0 +1,29 @@
+body{
+        background-color: black;
+}
+
+div.block{
+    background-color: cornflowerblue;
+    border: 2px solid cyan;
+    padding: 0% 0% 0% 45%;
+    position: relative;
+    top: 25px;
+}
+
+span.block_text{
+    color: wheat;
+    margin: 2% 0% 2% 0%;
+    position: relative;
+    right: 7%;
+}
+
+div.pointer{
+    background-color: black;
+    width: 0;
+	height: 0;
+	border-left: 30px solid transparent;
+	border-right: 30px solid transparent;
+	border-bottom: 30px solid cornflowerblue;
+    position: relative;
+    top: -30px;
+}

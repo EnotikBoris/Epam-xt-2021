@@ -1,0 +1,46 @@
+form{
+    width: 400px;
+    height: 275px;
+    background: #0690CF;
+    border: 3px solid #0075B2;
+    color: white;
+  }
+  
+  form h2{
+    padding: 20px 20px 5px;
+    margin: 0 0 27px;
+    font-weight: 400;
+    border-bottom: 1px solid white;
+  }
+  
+  form p{
+    margin: 20px 20px 0;
+  }
+  input{
+    border: none;
+    margin: 0 20px;
+    height: 20px;
+    width: 316px;
+    box-shadow: inset 0 0 0 1px #ABADB3;
+  }
+  
+  input[type="submit"]{
+    background: #FFDF7F;
+    box-shadow: none;
+    width: auto;
+    margin: 32px 20px;
+    padding: 5px;
+    padding-bottom: 21px;
+  }
+  
+  form div{
+    display: inline-block;
+    width: 150px;
+    margin-right: 16px;
+  }
+  
+  div input{
+    height: 22px;
+    width: 100%;
+    padding: 0;
+  }
