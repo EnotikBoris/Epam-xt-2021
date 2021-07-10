@@ -114,6 +114,11 @@
     <Content Include="Pages\Main.cshtml" />
     <Content Include="Pages\Layout\_BaseLayout.cshtml" />
     <Content Include="Pages\SignUp.cshtml" />
+    <Content Include="Pages\SignIn.cshtml" />
+    <Content Include="Pages\Friends.cshtml" />
+    <Content Include="Pages\Messages.cshtml" />
+    <Content Include="Pages\MyShop.cshtml" />
+    <Content Include="Pages\Profile.cshtml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
