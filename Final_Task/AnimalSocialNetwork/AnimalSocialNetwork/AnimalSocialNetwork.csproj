@@ -105,6 +105,9 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\CustomStyles.css" />
+    <Content Include="Content\Images\color.jpg" />
+    <Content Include="Content\Images\stone.jpg" />
+    <Content Include="Content\Images\wood-1.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -168,6 +171,16 @@
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Pages\Partial\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DI\DI.csproj">
+      <Project>{84302c8f-5827-4bd3-8941-51eb8cb86c98}</Project>
+      <Name>DI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{f64673eb-3c33-45f4-8a69-d1e5cff49964}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,9 +1,113 @@
-﻿@{
+﻿@using ASN.Common.Entities
+
+@{
     Layout = "~/Pages/Layout/_BaseLayout.cshtml";
 
     // Mock section
+    var profile = new Profile()
+    {
+        Owner = new Person
+        {
+            FirstName = "Ёжик",
+            LastName = "СТепан",
+            Age = 5,
+            DateOfBirth = new DateTime(2016, 7, 7),
+            Id = Guid.NewGuid(),
+            Image = null,
+            Type = "Попугай Корелла"
+        },
+        Shop = new Shop
+        {
+            Name = "Зоомагазин: Джунглии Мисисипи",
+            Adress = "Кошачья область, Г. Тыгыдынск, ул. Проспект Шерсти, д.5",
+            SizeType = SizeType.Large,
+        },
+        Status = "Хорошему попугаю и у кошек хорошо",
+        Friends = null,
+        Messages = null,
+        Notes = null,
+    };
+
+    var countOfFriends = (profile?.Friends?.Count()).HasValue ? profile.Friends.Count() : 0;
+    var countOfMessages = (profile?.Messages?.Count()).HasValue ? profile.Friends.Count() : 0;
+    var header =  $"{profile.Owner.Type} : {profile.Owner.FirstName} {profile.Owner.LastName}";
 }
 
 @section SignSettings{
     <a class="btn btn-primary sign_in" href="~/Pages/SignIn.cshtml">Выйти</a>
 }
+
+<h6>@profile.Owner.Id</h6>
+<h3 class="status header">@header</h3>
+<div class="badge rounded-pill bg-primary status">
+    <span>Статус:</span>
+    <span>@profile.Status</span>
+</div><br />
+
+<div class="btn-group dropend">
+    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Профиль
+    </button>
+    <ul class="dropdown-menu">
+        <li>
+        <div class="card profile-card">
+            <div class="card-header">
+                МОй Профиль
+            </div>
+            <div class="card-body">
+
+
+                <div>
+                    <button type="button" class="btn btn-info position-relative separate down-sep-10">
+                        Друзья
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            @countOfFriends
+                            <span class="visually-hidden">unread messages</span>
+                        </span>
+                    </button>
+                </div>
+
+                <div>
+                    <button type="button" class="btn btn-info position-relative separate down-sep-10">
+                        Сообщения
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            @countOfMessages
+                            <span class="visually-hidden">unread messages</span>
+                        </span>
+                    </button>
+                </div>
+
+                <div>
+                    <button type="button" class="btn btn-info position-relative separate down-sep-10">
+                        Мой магазин
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                            0
+                            <span class="visually-hidden">unread messages</span>
+                        </span>
+                    </button>
+                </div>
+
+                <div>
+                    <button type="button" class="btn btn-info position-relative separate down-sep-10">
+                        Изменить статус
+                    </button>
+                </div>
+
+
+            </div>
+        </div>
+            </li>
+    </ul>
+</div>
+
+<div class="card vall">
+    <div class="card-header">
+        Стена
+    </div>
+    <a href="#" class="btn btn-primary">Добавить запись</a>
+
+    <div class="card-body">
+        <h5 class="card-title">Мои записи</h5>
+        <p class="card-text">Пока здесь нет ни одной записи, но вы можете это изменить...</p>
+    </div>
+</div>

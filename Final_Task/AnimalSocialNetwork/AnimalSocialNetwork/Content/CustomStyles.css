@@ -1,4 +1,8 @@
-﻿.sign_in{
+﻿body {
+    background-image: url(/Content/Images/color.jpg);
+}
+
+.sign_in{
     position:relative;
     left: 60%;
 }
@@ -15,4 +19,40 @@
 .custom-div{
     display:inline-block;
     width: 175px;
+}
+
+.separate{
+    margin: 30px;
+}
+
+.down-sep-10{
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
+.vall{
+    position: relative;
+    bottom: -450px;
+}
+
+.profile-card{
+    width: 400px;
+}
+
+.status{
+    display:inline-block;
+}
+
+.header{
+    color: aquamarine;
+}
+
+.width-220{
+    width: 220px;
+}
+
+.half-margin{
+    position:relative;
+    left:40%;
+    top:150px;
 }

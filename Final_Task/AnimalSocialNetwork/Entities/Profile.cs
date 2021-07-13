@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ASN.Common.Entities
 {
-    class Profile
+    public class Profile
     {
         public Person Owner { get; set; }
         public Shop Shop { get; set; }
