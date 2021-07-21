@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace DI
 {
-    public class DI
+    public static class DI
     {
-        private IDao _dao;
-        private ILogic _logic;
+        private static IDao _dao;
+        private static ILogic _logic;
 
-        public IDao GetDao()
+        public static IDao GetDao()
         {
             if (_dao == null)
             {
@@ -25,7 +25,7 @@ namespace DI
             return _dao;
         }
 
-        public ILogic GetLogic()
+        public static ILogic GetLogic()
         {
             if (_logic == null)
             {

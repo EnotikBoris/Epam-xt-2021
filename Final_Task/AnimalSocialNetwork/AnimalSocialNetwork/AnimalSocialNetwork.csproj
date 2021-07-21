@@ -177,6 +177,10 @@
       <Project>{70d28cd2-2126-4783-8a0e-2cf1e6aae495}</Project>
       <Name>ASN.BLL.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ASN.DAL.Contracts\ASN.DAL.Contracts.csproj">
+      <Project>{572393fc-a943-4120-aea1-f1425cbf939d}</Project>
+      <Name>ASN.DAL.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DI\DI.csproj">
       <Project>{84302c8f-5827-4bd3-8941-51eb8cb86c98}</Project>
       <Name>DI</Name>

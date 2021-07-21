@@ -15,5 +15,6 @@ namespace ASN.Common.Entities
         public DateTime DateOfBirth { get; set; }
         public string Type { get; set; }
         public byte[] Image { get; set; }
+        public Shop Shop { get; set; }
     }
 }
