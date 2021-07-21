@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>84302c8f-5827-4bd3-8941-51eb8cb86c98</ProjectGuid>
+    <ProjectGuid>{84302C8F-5827-4BD3-8941-51EB8CB86C98}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DI</RootNamespace>
@@ -31,24 +31,40 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    
-    
-    <Reference Include="Microsoft.CSharp"/>
-    
-    <Reference Include="System.Data"/>
-    
-    <Reference Include="System.Net.Http"/>
-    
-    <Reference Include="System.Xml"/>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="DI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ASN.BLL.Contracts\ASN.BLL.Contracts.csproj">
+      <Project>{70d28cd2-2126-4783-8a0e-2cf1e6aae495}</Project>
+      <Name>ASN.BLL.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASN.BLL.Logics\ASN.BLL.Logics.csproj">
+      <Project>{2864986c-e6cf-481d-a37a-5877f0e5b64e}</Project>
+      <Name>ASN.BLL.Logics</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASN.DAL.Contracts\ASN.DAL.Contracts.csproj">
+      <Project>{572393fc-a943-4120-aea1-f1425cbf939d}</Project>
+      <Name>ASN.DAL.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASN.DAL\ASN.DAL.csproj">
+      <Project>{44b1be18-7b8a-44aa-8f8d-281b7bfc32a5}</Project>
+      <Name>ASN.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{f64673eb-3c33-45f4-8a69-d1e5cff49964}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
- </Project>
+</Project>

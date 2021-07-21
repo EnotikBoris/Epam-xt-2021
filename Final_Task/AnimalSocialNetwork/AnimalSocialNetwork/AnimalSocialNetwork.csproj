@@ -173,6 +173,10 @@
     <Folder Include="Pages\Partial\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ASN.BLL.Contracts\ASN.BLL.Contracts.csproj">
+      <Project>{70d28cd2-2126-4783-8a0e-2cf1e6aae495}</Project>
+      <Name>ASN.BLL.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DI\DI.csproj">
       <Project>{84302c8f-5827-4bd3-8941-51eb8cb86c98}</Project>
       <Name>DI</Name>

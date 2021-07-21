@@ -1,7 +1,10 @@
 ﻿@using ASN.Common.Entities
+@using ASN.BLL.Contracts
+@using System.Linq
 
 @{
     Layout = "~/Pages/Layout/_BaseLayout.cshtml";
+    var di = new DI.DI();
 
     // Mock section
     var profile = new Profile()
@@ -36,6 +39,8 @@
 @section SignSettings{
     <a class="btn btn-primary sign_in" href="~/Pages/SignIn.cshtml">Выйти</a>
 }
+
+@Html.ListBox(name: "profiles", selectList: di.GetLogic().GetProfiles().Select(x => new SelectListItem { Text = x.Owner.Id.ToString() }));
 
 <h6>@profile.Owner.Id</h6>
 <h3 class="status header">@header</h3>
