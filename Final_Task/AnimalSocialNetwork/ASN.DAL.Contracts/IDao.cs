@@ -14,5 +14,6 @@ namespace ASN.DAL.Contracts
         IEnumerable<Shop> GetShops();
         Person GetPerson(Guid personId);
         Shop GetShop(Person person);
+        Person Authenticate(string login, string password);
     }
 }

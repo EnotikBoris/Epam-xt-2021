@@ -20,7 +20,7 @@ namespace ASN.DAL
         private const string readMessagesTextCommand = @"SELECT txt.Texts
                                                          FROM MessageTexts AS txt
                                                              WHERE txt.MessageID = '{0}'";
-        private const string readAllPersonsCommand = "SELECT * FROM Person";
+        private const string readAllPersonsCommand = "SELECT * FROM Person AS p";
         private const string readPersonCommand = @"SELECT *
                                                    FROM Person
                                                    	    WHERE Id = '{0}'";
@@ -36,7 +36,11 @@ namespace ASN.DAL
                                               FROM Shop AS s
                                               	INNER JOIN Person AS p
                                               		ON p.ShopID = s.ID
-                                              	WHERE p.Id = 'E9810EE6-5960-47CF-ADE7-47CCA7F46B86'";
+                                              	WHERE p.Id = '{0}'";
+        private const string authenticateCommand = @"SELECT *
+                                                    FROM Person AS p
+                                                    	WHERE p.Login = '{0}'
+                                                    		AND p.Password = '{1}'";
 
         public IEnumerable<Person> GetAllPersons()
             => ReadData<Person>(readAllPersonsCommand, (reader, persons) =>
@@ -85,7 +89,7 @@ namespace ASN.DAL
             }).FirstOrDefault();
 
         public Shop GetShop(Person person)
-        => ReadData<Shop>(readAllShopsCommand, (reader, shops) =>
+        => ReadData<Shop>(string.Format(readShopCommand, person.Id), (reader, shops) =>
         {
             shops.Add(new Shop
             {
@@ -106,7 +110,21 @@ namespace ASN.DAL
                 });
             });
 
-        private static IEnumerable<T> ReadData<T>(string commandText, Action<SqlDataReader, List<T>> readerAction)
+        public Person Authenticate(string login, string password)
+            => ReadData<Person>(string.Format(authenticateCommand, login, password), (reader, persons) =>
+            {
+                persons.Add(new Person
+                {
+                    Age = (int) reader["Age"],
+                    DateOfBirth = (DateTime)reader["DateOfBirth"],
+                    Id = (Guid)reader["Id"],
+                    FirstName = (string)reader["FirstName"],
+                    LastName = (string)reader["LastName"],
+                    Type = (string)reader["Type"],
+                });
+            }).FirstOrDefault();
+
+private static IEnumerable<T> ReadData<T>(string commandText, Action<SqlDataReader, List<T>> readerAction)
         {
             using (var connection = new SqlConnection(_connectionString)) // Using принимает только объекты реализующие IDisposable. После выполнения блока кода, выполняется метод Dispose
             {
@@ -134,5 +152,7 @@ namespace ASN.DAL
 
             return items;
         }
+
+        
     }
 }

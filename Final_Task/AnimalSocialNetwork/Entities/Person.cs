@@ -16,5 +16,9 @@ namespace ASN.Common.Entities
         public string Type { get; set; }
         public byte[] Image { get; set; }
         public Shop Shop { get; set; }
+        [Obsolete("Вынести в отдельную сущность и таблицу")]
+        public string Login { get; set; }
+        [Obsolete("Вынести в отдельную сущность и таблицу")]
+        public string Password { get; set; }
     }
 }

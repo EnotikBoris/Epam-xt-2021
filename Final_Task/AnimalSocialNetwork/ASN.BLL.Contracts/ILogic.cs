@@ -12,5 +12,6 @@ namespace ASN.BLL.Contracts
     {
         Profile GetProfile(Guid id);
         IEnumerable<Profile> GetProfiles();
+        Person CurrentUser { get; }
     }
 }

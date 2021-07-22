@@ -30,14 +30,13 @@
         Notes = null,
     };
 
+    profile = DI.DI.GetLogic().GetProfile(DI.DI.GetLogic().CurrentUser.Id);
+
     var countOfFriends = (profile?.Friends?.Count()).HasValue ? profile.Friends.Count() : 0;
     var countOfMessages = (profile?.Messages?.Count()).HasValue ? profile.Friends.Count() : 0;
     var header =  $"{profile.Owner.Type} : {profile.Owner.FirstName} {profile.Owner.LastName}";
 }
 
-@section SignSettings{
-    <a class="btn btn-primary sign_in" href="~/Pages/SignIn.cshtml">Выйти</a>
-}
 
 @Html.ListBox(name: "profiles", selectList: DI.DI.GetLogic().GetProfiles().Select(x => new SelectListItem { Text = x.Owner.Id.ToString() }));
 

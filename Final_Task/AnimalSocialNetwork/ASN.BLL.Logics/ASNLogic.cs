@@ -17,6 +17,15 @@ namespace ASN.BLL.Logics
             _dao = dao;
         }
 
+        public Person CurrentUser { get; private set; }
+
+        public Person Authenticate(string login, string password)
+        {
+            CurrentUser = _dao.Authenticate(login, password);
+
+            return CurrentUser;
+        }
+
         public IEnumerable<Person> GetAllPersons()
             => _dao.GetAllPersons();
 
