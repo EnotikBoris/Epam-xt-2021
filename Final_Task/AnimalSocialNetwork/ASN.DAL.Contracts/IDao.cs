@@ -15,5 +15,6 @@ namespace ASN.DAL.Contracts
         Person GetPerson(Guid personId);
         Shop GetShop(Person person);
         Person Authenticate(string login, string password);
+        void CreateMessageText(Guid MessageId, string message);
     }
 }

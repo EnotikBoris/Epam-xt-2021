@@ -20,5 +20,8 @@ namespace ASN.Common.Entities
         public string Login { get; set; }
         [Obsolete("Вынести в отдельную сущность и таблицу")]
         public string Password { get; set; }
+
+        public string GetFullName()
+            => $"{Type} {FirstName} {LastName}";
     }
 }

@@ -12,11 +12,13 @@ namespace ASN.DAL
     public class ASNDao : IDao
     {
         private const string _connectionString = "Data Source=DESKTOP-7VLVODV;Initial Catalog=ANS-DB;Integrated Security=True";
-        private const string readMessageCommand = @"SELECT msg.MessageId
-                                                    	, msg.Name
-                                                    	, msg.TargetPerson
-                                                    	, msg.CurrentPerson
-                                                    FROM Message as msg";
+        private const string readMessageCommand = @"SELECT msg.MessageId, msg.Name, msg.TargetPerson AS TargetPerson, msg.CurrentPerson
+                                                    FROM Message AS msg
+                                                    	INNER JOIN MessageTexts AS txt
+                                                    		ON msg.MessageId = txt.MessageID
+                                                    	INNER JOIN Person AS currentPerson
+                                                    		ON msg.CurrentPerson = currentPerson.Id
+                                                    	WHERE currentPerson.Id = '{0}'";
         private const string readMessagesTextCommand = @"SELECT txt.Texts
                                                          FROM MessageTexts AS txt
                                                              WHERE txt.MessageID = '{0}'";
@@ -41,6 +43,8 @@ namespace ASN.DAL
                                                     FROM Person AS p
                                                     	WHERE p.Login = '{0}'
                                                     		AND p.Password = '{1}'";
+        private const string CreateMessageTextCommand = @"INSERT INTO MessageTexts (MessageID, Texts, TextsID)
+                                                        VALUES('{0}', '{1}', NEWID())";
 
         public IEnumerable<Person> GetAllPersons()
             => ReadData<Person>(readAllPersonsCommand, (reader, persons) =>
@@ -57,7 +61,7 @@ namespace ASN.DAL
             });
 
         public IEnumerable<Message> GetMessages(Guid personId)
-            => ReadData<Message>(readMessageCommand, (reader, messages) => 
+            => ReadData<Message>(string.Format(readMessageCommand, personId), (reader, messages) => 
             {
                 var id = (Guid)reader["MessageId"];
 
@@ -124,7 +128,20 @@ namespace ASN.DAL
                 });
             }).FirstOrDefault();
 
-private static IEnumerable<T> ReadData<T>(string commandText, Action<SqlDataReader, List<T>> readerAction)
+        public void CreateMessageText(Guid MessageId, string message)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                var command = connection.CreateCommand();
+                command.CommandType = System.Data.CommandType.Text;
+                command.CommandText = string.Format(CreateMessageTextCommand, MessageId.ToString(), message);
+
+                command.ExecuteNonQuery();
+            }
+        }
+
+    private static IEnumerable<T> ReadData<T>(string commandText, Action<SqlDataReader, List<T>> readerAction)
         {
             using (var connection = new SqlConnection(_connectionString)) // Using принимает только объекты реализующие IDisposable. После выполнения блока кода, выполняется метод Dispose
             {
@@ -152,7 +169,5 @@ private static IEnumerable<T> ReadData<T>(string commandText, Action<SqlDataRead
 
             return items;
         }
-
-        
     }
 }

@@ -51,13 +51,17 @@
             else
             {
                 <form class="half-margin" method="post">
+                    <input name="exit" value="exit" hidden="hidden"/>
                     <button type="submit" class="btn btn-primary">Выйти</button>
                 </form>
 
                 if (IsPost)
                 {
-                    FormsAuthentication.SignOut();
-                    Response.Redirect("~/Pages/Main");
+                    if (Request["exit"] == "exit")
+                    {
+                        FormsAuthentication.SignOut();
+                        Response.Redirect("~/Pages/Main");
+                    }
                 }
             }
 

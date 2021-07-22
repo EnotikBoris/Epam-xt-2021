@@ -26,6 +26,11 @@ namespace ASN.BLL.Logics
             return CurrentUser;
         }
 
+        public void CreateMessageText(Guid MessageId, string message)
+        {
+            _dao.CreateMessageText(MessageId, message);
+        }
+
         public IEnumerable<Person> GetAllPersons()
             => _dao.GetAllPersons();
 
